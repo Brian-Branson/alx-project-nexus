@@ -132,15 +132,7 @@ export default function Home({products, fashionProducts }: {products: ProductLis
 
         {/* Carousel */}
         <div className="flex-1">
-          <ImageCarousel
-            images={[
-              "/assets/carousel/img-1.gif",
-              "/assets/carousel/img-2.gif",
-              "/assets/carousel/img-3.gif",
-              "/assets/carousel/img-4.jpg",
-              "/assets/carousel/img-5.gif",
-            ]}
-          />
+          <ImageCarousel/>
         </div>
       </div>
 
