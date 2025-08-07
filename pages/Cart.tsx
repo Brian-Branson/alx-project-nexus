@@ -7,11 +7,13 @@ export default function CartPage() {
 
   const totalPrice = cart.reduce((sum, item) => {
     let price = 0;
-    if (typeof item.price === "string") {
-      price = parseFloat(item.price.replace(/[^\d.]/g, "") || "0");
-    } else if (typeof item.price === "number") {
-      price = item.price;
-    }
+
+    // Convert price to string to safely use .replace()
+    const priceAsString = String(item.price);
+    const numericValue = parseFloat(priceAsString.replace(/[^\d.]/g, ""));
+
+    // Ensure the parsed value is a valid number, otherwise default to 0
+    price = !isNaN(numericValue) ? numericValue : 0;
 
     return sum + price * item.quantity;
   }, 0);
