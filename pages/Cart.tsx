@@ -6,10 +6,12 @@ export default function CartPage() {
   const { cart, removeFromCart, clearCart } = useCart();
 
   const totalPrice = cart.reduce((sum, item) => {
-    const price =
-      typeof item.price === "string"
-        ? parseFloat(item.price.replace(/[^\d.]/g, ""))
-        : item.price;
+    let price = 0;
+    if (typeof item.price === "string") {
+      price = parseFloat(item.price.replace(/[^\d.]/g, "") || "0");
+    } else if (typeof item.price === "number") {
+      price = item.price;
+    }
 
     return sum + price * item.quantity;
   }, 0);
