@@ -6,7 +6,7 @@ import { ProductList, ProductsResponse } from "@/interface/Products";
 
 
 export async function getServerSideProps() {
-  let products = [];
+  const products = [];
   let page = 1;
   let hasNext = true;
 
