@@ -1,11 +1,12 @@
-/* eslint-disable @next/next/no-img-element */
+  /* eslint-disable @next/next/no-img-element */
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import ImageCarousel from "../components/common/ImageCarousel";
 import { ProductList, ProductsResponse } from "@/interface/Products";
+import { GetServerSidePropsContext } from 'next';
 
 
-export async function getServerSideProps() {
+export async function getServerSideProps(context: GetServerSidePropsContext) {
   const products = [];
   let page = 1;
   let hasNext = true;
@@ -19,14 +20,14 @@ export async function getServerSideProps() {
       hasNext = !!data.links?.next;
       page += 1;
     }
-    //res.status(200).json({ results: products });
+    
     return {
       props: {
         products,
       }
     }
   } catch (error) {
-    //res.status(500).json({ error: "Failed to fetch products." });
+    
     return {
       props: {
         products: [],
@@ -133,11 +134,11 @@ export default function Home({products, fashionProducts }: {products: ProductLis
         <div className="flex-1">
           <ImageCarousel
             images={[
-              "../public/assets/carousel/img-1.gif",
-              "../public/assets/carousel/img-2.gif",
-              "../public/assets/carousel/img-3.gif",
-              "../public/assets/carousel/img-4.jpg",
-              "../public/assets/carousel/img-5.gif",
+              "/assets/carousel/img-1.gif",
+              "/assets/carousel/img-2.gif",
+              "/assets/carousel/img-3.gif",
+              "/assets/carousel/img-4.jpg",
+              "/assets/carousel/img-5.gif",
             ]}
           />
         </div>
